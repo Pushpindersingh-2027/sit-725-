@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Catalogue</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper teal">
+      <a href="#" class="brand-logo center">Plant Catalogue</a>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 30px;">
+    <h5>SIT725 – Practical Style App</h5>
+    <p>This app loads plant cards from an Express REST API using fetch().</p>
+
+    <button id="loadBtn" class="btn waves-effect waves-light teal">
+      Load Plants
+      <i class="material-icons right">local_florist</i>
+    </button>
+
+    <div class="row" id="plantsContainer" style="margin-top: 20px;"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
