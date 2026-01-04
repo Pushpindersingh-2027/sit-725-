@@ -1,40 +1,54 @@
 const express = require("express");
+const path = require("path");
+const fs = require("fs");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
-const plants = [
-  {
-    id: 1,
-    name: "Snake Plant",
-    type: "Indoor",
-    care: "Low",
-    image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=60",
-    description: "Hardy indoor plant, great for beginners."
-  },
-  {
-    id: 2,
-    name: "Peace Lily",
-    type: "Indoor",
-    care: "Medium",
-    image: "https://images.unsplash.com/photo-1615471618985-971989a44e47?auto=format&fit=crop&w=900&q=60",
-    description: "Beautiful flowering plant that likes shade."
-  },
-  {
-    id: 3,
-    name: "Aloe Vera",
-    type: "Indoor/Outdoor",
-    care: "Low",
-    image: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=900&q=60",
-    description: "Succulent plant known for its healing gel."
-  }
-];
+// Load plants from seed file
+const dataPath = path.join(__dirname, "plants.json");
+let plants = [];
 
+if (fs.existsSync(dataPath)) {
+  plants = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+}
+
+// GET all plants
 app.get("/api/plants", (req, res) => {
   res.json({ plants });
 });
 
+// POST new plant (manual add)
+app.post("/api/plants", (req, res) => {
+  const { name, type, care, image, description } = req.body;
+
+  if (!name || name.trim() === "") {
+    return res.status(400).json({ error: "Plant name is required" });
+  }
+
+  const newPlant = {
+    name: name.trim(),
+    type: (type || "Unknown").trim(),
+    care: (care || "Not provided").trim(),
+    image:
+      image && image.trim().length > 0
+        ? image.trim()
+        : "https://via.placeholder.com/400x250?text=Plant+Image",
+    description: (description || "").trim()
+  };
+
+  plants.push(newPlant);
+
+  // Persist to JSON file
+  fs.writeFileSync(dataPath, JSON.stringify(plants, null, 2));
+
+  res.status(201).json(newPlant);
+});
+
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });

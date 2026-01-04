@@ -1,4 +1,5 @@
 document.getElementById("loadBtn").addEventListener("click", loadPlants);
+document.getElementById("addPlantBtn").addEventListener("click", addPlant);
 
 async function loadPlants() {
   const container = document.getElementById("plantsContainer");
@@ -21,7 +22,7 @@ async function loadPlants() {
             <div class="card-content">
               <p><b>Type:</b> ${p.type}</p>
               <p><b>Care:</b> ${p.care}</p>
-              <p>${p.description}</p>
+              <p>${p.description || ""}</p>
             </div>
           </div>
         </div>
@@ -30,5 +31,47 @@ async function loadPlants() {
   } catch (err) {
     container.innerHTML = `<p class="red-text">Failed to load plants.</p>`;
     console.error(err);
+  }
+}
+
+async function addPlant(e) {
+  e.preventDefault();
+
+  const plant = {
+    name: document.getElementById("plantName").value,
+    type: document.getElementById("plantType").value,
+    care: document.getElementById("plantCare").value,
+    image: document.getElementById("plantImage").value,
+    description: document.getElementById("plantDescription").value
+  };
+
+  try {
+    const res = await fetch("/api/plants", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(plant)
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      M.toast({ html: err.error || "Failed to add plant" });
+      return;
+    }
+
+    M.toast({ html: "✅ Plant added!" });
+
+    // Clear form
+    document.getElementById("plantName").value = "";
+    document.getElementById("plantType").value = "";
+    document.getElementById("plantCare").value = "";
+    document.getElementById("plantImage").value = "";
+    document.getElementById("plantDescription").value = "";
+    M.updateTextFields();
+
+    // Refresh list automatically
+    loadPlants();
+  } catch (err) {
+    console.error(err);
+    M.toast({ html: "❌ Error adding plant" });
   }
 }

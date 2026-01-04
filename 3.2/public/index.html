@@ -21,6 +21,46 @@
     <h5>SIT725 – Practical Style App</h5>
     <p>This app loads plant cards from an Express REST API using fetch().</p>
 
+    <!-- Manual Add Form -->
+    <div class="card-panel">
+      <h6>Add Plant Manually</h6>
+
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input id="plantName" type="text" required>
+          <label for="plantName">Plant Name *</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <input id="plantType" type="text">
+          <label for="plantType">Plant Type</label>
+        </div>
+
+        <div class="input-field col s12">
+          <input id="plantCare" type="text">
+          <label for="plantCare">Care Instructions</label>
+        </div>
+
+        <div class="input-field col s12">
+          <input id="plantImage" type="text">
+          <label for="plantImage">Image URL (optional)</label>
+        </div>
+
+        <div class="input-field col s12">
+          <textarea id="plantDescription" class="materialize-textarea"></textarea>
+          <label for="plantDescription">Description (optional)</label>
+        </div>
+
+        <div class="col s12">
+          <button id="addPlantBtn" class="btn waves-effect waves-light teal">
+            Add Plant
+            <i class="material-icons right">add</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load Button -->
     <button id="loadBtn" class="btn waves-effect waves-light teal">
       Load Plants
       <i class="material-icons right">local_florist</i>

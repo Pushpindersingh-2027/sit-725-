@@ -1,13 +1,11 @@
 {
-  "name": "sit725-plant-catalog",
+  "name": "plant-catalogue",
   "version": "1.0.0",
-  "description": "SIT725 practical style Express app using Materialize and a simple GET REST API (Plant Catalogue domain)",
+  "description": "SIT725 Plant Catalogue - Express + Materialize + Fetch",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Pushpinder Singh",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.19.2"
   }
