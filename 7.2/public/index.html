@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIT725 7.2P - Socket Study Room</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <h1>Study Room Live Chat</h1>
+        <p class="sub">Express + Socket.IO (real-time rooms, typing, reactions)</p>
+      </div>
+      <div class="roominfo">
+        <span id="roomName">Room: -</span>
+        <span id="onlineCount">Online: 0</span>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel left">
+        <h2>Join</h2>
+        <div class="joinbox">
+          <label>Name</label>
+          <input id="nameInput" placeholder="e.g., Mohit" maxlength="20"/>
+
+          <label>Room</label>
+          <input id="roomInput" placeholder="e.g., SIT725" maxlength="20"/>
+
+          <button id="joinBtn">Join Room</button>
+          <p class="hint">Tip: Open this page in 2 browser windows to test real-time chat.</p>
+        </div>
+
+        <h2>Online Users</h2>
+        <ul id="usersList" class="users"></ul>
+      </section>
+
+      <section class="panel right">
+        <div class="chatHeader">
+          <h2>Chat</h2>
+          <div id="typingLine" class="typing"></div>
+        </div>
+
+        <div id="messages" class="messages"></div>
+
+        <div class="reactions">
+          <span>Quick reactions:</span>
+          <button class="emoji" data-emoji="👍">👍</button>
+          <button class="emoji" data-emoji="👏">👏</button>
+          <button class="emoji" data-emoji="🔥">🔥</button>
+          <button class="emoji" data-emoji="✅">✅</button>
+          <button class="emoji" data-emoji="😂">😂</button>
+          <button class="emoji" data-emoji="🎉">🎉</button>
+        </div>
+
+        <form id="chatForm" class="chatForm">
+          <input id="chatInput" placeholder="Type a message..." autocomplete="off" maxlength="400" disabled />
+          <button id="sendBtn" type="submit" disabled>Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Built for SIT725 Task 7.2P</span>
+    </footer>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>

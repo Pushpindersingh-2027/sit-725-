@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Aloe Vera",
+    "type": "Succulent",
+    "care": "Low water, indirect sunlight",
+    "image": "https://images.unsplash.com/photo-1587502537745-84a91c1e1a4b?auto=format&fit=crop&w=1000&q=60",
+    "description": "A hardy medicinal plant commonly grown indoors."
+  },
+  {
+    "name": "Snake Plant",
+    "type": "Indoor Plant",
+    "care": "Water every 2–3 weeks, low light tolerant",
+    "image": "https://images.unsplash.com/photo-1593697821252-0c9137d78fda?auto=format&fit=crop&w=1000&q=60",
+    "description": "A beginner-friendly plant known for air purification."
+  },
+  {
+    "name": "Peace Lily",
+    "type": "Flowering Plant",
+    "care": "Keep soil moist, indirect sunlight",
+    "image": "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=1000&q=60",
+    "description": "An elegant indoor plant with white blooms."
+  },
+  {
+    "name": "Rose Plant",
+    "type": "Blooming Flower",
+    "care": "Water the rose plant every day",
+    "image": "https://via.placeholder.com/400x250?text=Plant+Image",
+    "description": ""
+  }
+]
